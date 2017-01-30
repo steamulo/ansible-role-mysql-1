@@ -119,3 +119,6 @@ mysql_replication_role: ''
 mysql_replication_master: ''
 # Same keys as `mysql_users` above.
 mysql_replication_user: []
+
+# skip restore dump even if url is present (for a cluster for example)
+mysql_skip_dump: false

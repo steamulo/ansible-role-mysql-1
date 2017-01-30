@@ -1,0 +1,22 @@
+---
+- stat: path=/tmp/{{ item.dump_to_restore | basename }}
+  when: item.dump_to_restore is defined
+  with_items: "{{ mysql_databases }}"
+  register: testDumpExists
+
+- name: Restore dump already there
+  mysql_db: name="{{ item.item.name }}" state=import target="/tmp/{{ item.item.dump_to_restore | basename }}" login_user="root" login_password="{{ mysql_root_password }}"
+  when: item.stat.exists
+  with_items: "{{ testDumpExists.results }}"
+
+- name: Retrieve dump
+  get_url: url="{{ item.item.dump_to_restore }}" dest="/tmp/" force=yes
+  when: item.item.dump_to_restore is defined and not item.stat.exists
+  with_items: "{{ testDumpExists.results }}"
+  register: getDump
+
+- name: Restore dump download
+  mysql_db: name="{{ item.item.item.name }}" state=import target="{{ item.dest }}" login_user="root" login_password="{{ mysql_root_password }}"
+  when: item.dest is defined
+  with_items: "{{ getDump.results }}"
+

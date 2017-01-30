@@ -21,3 +21,7 @@
 - include: databases.yml
 - include: users.yml
 - include: replication.yml
+
+- include: restore_dump.yml
+  when: "{{ not mysql_skip_dump and mysql_replication_role == 'master' }}"
+  tags: mysql_restore_db
