@@ -1,4 +1,11 @@
 ---
+
+- name: Add mysql 5.6 unofficial ppa for Ubuntu xenial
+  apt_repository: repo='{{ item }}' state=present
+  with_items:
+    - "ppa:ondrej/mysql-5.6"
+  when: ansible_distribution_release == "xenial" and "mysql-server-5.6" in mysql_packages
+
 - name: Check if MySQL is already installed.
   stat: path=/etc/init.d/mysql
   register: mysql_installed
