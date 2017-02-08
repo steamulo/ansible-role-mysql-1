@@ -122,3 +122,5 @@ mysql_replication_user: []
 
 # skip restore dump even if url is present (for a cluster for example)
 mysql_skip_dump: false
+
+mysql_5_6: False
