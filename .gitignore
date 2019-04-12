@@ -25,3 +25,7 @@ tests/.vagrant/
 *.retry
 tests/roles/
 tests/*.retry
+=======
+*.retry
+*/__pycache__
+*.pyc
