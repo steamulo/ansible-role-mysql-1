@@ -23,5 +23,6 @@ tests/.vagrant/
 
 ### Ansible ###
 *.retry
-tests/roles/
-tests/*.retry
+*/__pycache__
+*.pyc
+
