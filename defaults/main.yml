@@ -134,4 +134,3 @@ mysql_replication_user: []
 mysql_skip_dump: false
 
 mysql_5_6: False
-
