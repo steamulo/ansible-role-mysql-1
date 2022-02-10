@@ -2,7 +2,7 @@
 
 - name: Add repo.mysql.com apt key
   apt_key:
-    url: http://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+    url: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
     state: present
 
 - block:
