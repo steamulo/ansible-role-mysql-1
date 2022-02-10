@@ -6,17 +6,17 @@
     state: present
 
 - block:
-  - name: Add wily repo for mysql-server-5.6
-    apt_repository:
-      repo: "deb http://repo.mysql.com/apt/ubuntu/ wily mysql-5.6"
-      state: present
-  - name: Pin Priority for repo.mysql.com
-    copy:
-      content: |
-        Package: *
-        Pin: origin "repo.mysql.com"
-        Pin-Priority: 999
-      dest: /etc/apt/preferences.d/mysql
+    - name: Add wily repo for mysql-server-5.6
+      apt_repository:
+        repo: "deb http://repo.mysql.com/apt/ubuntu/ wily mysql-5.6"
+        state: present
+    - name: Pin Priority for repo.mysql.com
+      copy:
+        content: |
+          Package: *
+          Pin: origin "repo.mysql.com"
+          Pin-Priority: 999
+        dest: /etc/apt/preferences.d/mysql
   when: mysql_5_6
 
 - name: Check if MySQL is already installed.
